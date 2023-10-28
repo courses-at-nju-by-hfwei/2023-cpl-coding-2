@@ -8,6 +8,8 @@
 int numbers[LEN] = { 0 };
 
 void SelectionSort(int arr[], int len);
+int GetMinIndex(const int arr[], int begin, int end);
+void Swap(int left, int right);
 void Print(const int arr[], int len);
 
 int main(void) {
@@ -23,22 +25,40 @@ int main(void) {
 
 void SelectionSort(int arr[], int len) {
   for (int i = 0; i < len; i++) {
-    // find the minimum value of numbers[i .. n-1]
-    int min = arr[i];
-    int min_index = i;
-
-    for (int j = i + 1; j <= len - 1; ++j) {
-      if (arr[j] < min) {
-        min = arr[j];
-        min_index = j;
-      }
-    }
+    int min_index = GetMinIndex(arr, i, len);
 
     // swap arr[i] and arr[min_index]
+    // Swap(left, right)
+    // arr[i] = 3   arr[min_index] = 5
+    // left = 3   right = 5
+    // Swap(arr[i], arr[min_index]);
+
     int temp = arr[i];
     arr[i] = arr[min_index];
     arr[min_index] = temp;
   }
+}
+
+int GetMinIndex(const int arr[], int begin, int end) {
+  int min = arr[begin];
+  int min_index = begin;
+
+  for (int j = begin + 1; j <= end - 1; ++j) {
+    if (arr[j] < min) {
+      min = arr[j];
+      min_index = j;
+    }
+  }
+
+  return min_index;
+}
+
+// left = 3   right = 5
+void Swap(int left, int right) {
+  int temp = left;
+  left = right;
+  right = temp;
+  // left = 5 right = 3
 }
 
 void Print(const int arr[], int len) {

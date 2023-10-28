@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+bool IsPrime(int number);
+
 int main(void) {
   int max = 0;
   scanf("%d", &max);
@@ -12,16 +14,7 @@ int main(void) {
   int count = 0;
 
   for (int number = 2; number <= max; number++) {
-    // decide whether number is a prime
-    bool is_prime = true;
-    for (int factor = 2; factor * factor <= number; factor++) {
-      if (number % factor == 0) {
-        is_prime = false;
-        break;
-      }
-    }
-
-    if (is_prime) {
+    if (IsPrime(number)) {
       count++;
       printf("%d ", number);
     }
@@ -30,4 +23,14 @@ int main(void) {
   printf("\ncount = %d\n", count);
 
   return 0;
+}
+
+bool IsPrime(int number) {
+  for (int factor = 2; factor * factor <= number; factor++) {
+    if (number % factor == 0) {
+      return false;
+    }
+  }
+
+  return true;
 }
