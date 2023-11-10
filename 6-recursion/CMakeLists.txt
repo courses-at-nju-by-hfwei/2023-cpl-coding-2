@@ -13,3 +13,4 @@ add_executable(gcd-re gcd-re.c)
 add_executable(gcd-iter gcd-iter.c)
 
 add_executable(bsearch-iter bsearch-iter.c)
+add_executable(bsearch-re bsearch-re.c)
