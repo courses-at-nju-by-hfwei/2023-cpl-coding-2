@@ -14,3 +14,6 @@ add_executable(gcd-iter gcd-iter.c)
 
 add_executable(bsearch-iter bsearch-iter.c)
 add_executable(bsearch-re bsearch-re.c)
+
+add_executable(merge-array merge.c)
+add_executable(mergesort mergesort.c)
