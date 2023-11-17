@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#define EPSILON 1e-5
+
 bool IsEqual(double x, double y);
 
 int main() {
@@ -22,5 +24,5 @@ int main() {
 }
 
 bool IsEqual(double x, double y) {
-  return fabs(x - y) <= DBL_EPSILON;
+  return fabs(x - y) <= EPSILON;
 }

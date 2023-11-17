@@ -11,7 +11,9 @@ int main() {
   int n;
   scanf("%d", &n);
 
+  time_t start = time(NULL);
   printf("Fib(%d) = %lld\n", n, Fib(n));
+  time_t end = time(NULL);
 
   return 0;
 }
