@@ -17,6 +17,13 @@ int main() {
 
   // return value; narrowing conversion
 
+  // from int to float; narrowing conversion
+  int big = 1234567890;
+  float approx = big;
+
+  printf("big = %d\t approx = %f\t diff = %d\n",
+         big, approx, big - (int) approx);
+
   return 0;
 }
 
