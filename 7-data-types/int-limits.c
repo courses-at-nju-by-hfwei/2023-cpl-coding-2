@@ -4,6 +4,8 @@
 #include <limits.h>
 
 int main() {
+  // INT_MIN = -2147483648
+  // INT_MAX = 2147483647 (10 digits)
   printf("INT_MIN = %d\n", INT_MIN);
   printf("INT_MAX = %d\n\n", INT_MAX);
 
@@ -17,6 +19,9 @@ int main() {
   // printf("ULONG_MAX = %lu\n\n", ULONG_MAX);
 
   // long long int: >= 64 bits
+
+  // LLONG_MIN = -9223372036854775808
+  // LLONG_MAX = 9223372036854775807 (19 digits)
   printf("LLONG_MIN = %lld\n", LLONG_MIN);
   printf("LLONG_MAX = %lld\n\n", LLONG_MAX);
 
