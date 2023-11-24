@@ -11,36 +11,53 @@
 
 void SelectionSort(int arr[], int len);
 void WrongSwap(int left, int right);
+void Swap(int *left, int *right);
 int GetMinIndex(const int arr[], int begin, int end);
 void Print(const int arr[], int len);
 
 int main(void) {
-  int numbers[LEN] = {15, 78, 23, 8, 50};
+  int len = 0;
+  scanf("%d", &len);
+  // (void *)
+  // size_t size: unsigned long/long long
+  int *numbers = malloc(len * sizeof(*numbers));
+  // NULL: null pointer ((void *) 0)
+  if (numbers == NULL) {
+    return 0;
+  }
 
-  Print(numbers, LEN);
-  SelectionSort(numbers, LEN);
-  Print(numbers, LEN);
+  for (int i = 0; i < len; ++i) {
+    scanf("%d", &numbers[i]);
+  }
 
-  return 0;
+  Print(numbers, len);
+  // (): function-call operator
+  SelectionSort(numbers, len);
+  // SelectionSort(&numbers[0], LEN);
+  Print(numbers, len);
+
+  free(numbers);
+  // free(numbers);
+  // numbers[3] = 5;
 }
 
 // arr: the (copy of the) address of the first element of the `numbers` array
-void SelectionSort(int arr[], int len) {
+// int arr[] <=> int *arr
+void SelectionSort(int *arr, int len) {
   for (int i = 0; i < len; i++) {
     int min_index = GetMinIndex(arr, i, len);
-
-    // ERROR: WrongSwap(arr[i], arr[min_index]);
-    int temp = arr[i];
-    arr[i] = arr[min_index];
-    arr[min_index] = temp;
+    // &arr[i] <=> &(*(arr + i)) <=> arr + i
+    Swap(arr + i, arr + min_index);
   }
 }
 
-int GetMinIndex(const int arr[], int begin, int end) {
+int GetMinIndex(const int *arr, int begin, int end) {
   int min = arr[begin];
   int min_index = begin;
 
   for (int i = begin + 1; i < end; ++i) {
+    // arr[i] <=> *(arr + i) <=> *(i + arr) <=> i[arr]
+    // arr + i, arr - i, p - q
     if (arr[i] < min) {
       min = arr[i];
       min_index = i;
@@ -54,6 +71,12 @@ void WrongSwap(int left, int right) {
   int temp = left;
   left = right;
   right = temp;
+}
+
+void Swap(int *left, int *right) {
+  int temp = *left;
+  *left = *right;
+  *right = temp;
 }
 
 void Print(const int arr[], int len) {
