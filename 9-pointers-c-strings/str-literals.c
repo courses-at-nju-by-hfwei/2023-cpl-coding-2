@@ -8,11 +8,16 @@
 #include <stdlib.h>
 
 int main(void) {
+  // char msg[] = {'H', 'e', .., '\0'};
   char msg[] = "Hello World!";
   msg[0] = 'N';
   printf("%s\n", msg);
 
+  // read-only memory
   char *ptr_msg = "Hello World!";
+  // UB
+  // Linux: SIGSEGV
+  // SIG: signal; SEGV: segmentation violation
   ptr_msg[0] = 'N';
   printf("%s\n", msg);
 
