@@ -15,52 +15,65 @@ void Print(const int table[][NUM_OF_SCORES], int num_of_musicians);
 
 int main() {
   // C, Java, Python scores of several musicians
-
   // TODO: (1) initialize scores with a 2D array
+  // const int scores[NUM_OF_MUSICIANS][NUM_OF_SCORES] = {
+  //     { 0, 10, 20 },
+  //     { 10, 20, 30 },
+  //     { 20, 30, 40 },
+  //     { 30, 40, 50 },
+  // };
 
   // TODO: (2) Dynamically allocate memory for scores
-  // int rows = 0;
-  // printf("Please input the number of students.\n");
-  // scanf("%d", &rows);
+  int rows = 0;
+  printf("Please input the number of students.\n");
+  scanf("%d", &rows);
 
   // malloc here
-  // int *scores = malloc(rows * NUM_OF_SCORES * sizeof(*scores));
+  int (*scores)[NUM_OF_SCORES] = malloc(rows * NUM_OF_SCORES * sizeof(**scores));
+  if (scores == NULL) {
+    return 0;
+  }
 
   printf("Please input the scores of these students.\n");
 
   // fill in data here
-  // for (int i = 0; i < NUM_OF_MUSICIANS; ++i) {
-  //   for (int j = 0; j < NUM_OF_SCORES; ++j) {
-  //     scanf("%d", &scores[i][j]);
-  //   }
-  // }
+  for (int i = 0; i < NUM_OF_MUSICIANS; ++i) {
+    for (int j = 0; j < NUM_OF_SCORES; ++j) {
+      scanf("%d", &scores[i][j]);
+    }
+  }
 
   // print it here
-  // Print(scores, NUM_OF_MUSICIANS);
+  Print(scores, NUM_OF_MUSICIANS);
 
   // access musician_score_table[3][2]
 
   // ptr_scores here
-  // int (*ptr_scores)[COLS] = scores;
-  // printf("ptr_scores[3][2] = %d\n",
-  //        (*(ptr_scores + 3))[2]);
+  int (*ptr_scores)[NUM_OF_SCORES] = scores;
+  printf("ptr_scores[3][2] = %d\n",
+         (*(ptr_scores + 3))[2]);
 
   // do not forget to free it
+  free(scores);
 
   return 0;
 }
 
+// table: int table[][COL]
+// int table[]: int *table
+// int table[][COL]: int (*table)[COL]
 void Print(const int table[][NUM_OF_SCORES], int num_of_musicians) {
   for (int i = 0; i < num_of_musicians; i++) {
     for (int j = 0; j < NUM_OF_SCORES; j++) {
+      // table[i][j]: *(*(table + i) + j)
+      // table: int (*)[COL]
+      // table + i: int (*)[COL]
+      // *(table + i): int *
+      // *(table + i) + j: int *
+      // *(*(table + i) + j): int
       printf("table[%d][%d]: %d\n",
              i, j, table[i][j]);
     }
     printf("\n\n");
   }
 }
-
-// { 0, 10, 20 },
-// { 10, 20, 30 },
-// { 20, 30, 40 },
-// { 30, 40, 50 },

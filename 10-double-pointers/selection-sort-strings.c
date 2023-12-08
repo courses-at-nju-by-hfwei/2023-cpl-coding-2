@@ -2,38 +2,53 @@
 // Created by hfwei on 2023/12/07.
 
 #include <stdio.h>
+#include <string.h>
 
-#define LEN 5
+#define LEN 10
 
-void SelectionSort(int arr[], int len);
-int GetMinIndex(int arr[], int begin, int end);
-void Swap(int *left, int *right);
-void Print(int arr[], int len);
+void SelectionSort(const char *arr[], int len);
+int GetMinIndex(const char *arr[], int begin, int end);
+void Swap(const char **left, const char **right);
+void Print(const char *arr[], int len);
 
 int main(void) {
-  int numbers[LEN] = { 15, 78, 23, 8, 50 };
+  const char *musicians[LEN] = {
+    "Luo Dayou",
+    "Cui Jian",
+    "Dou Wei",
+    "Zhang Chu",
+    "Wan Qing",
+    "Li Zhi",
+    "Yao",
+    "ZuoXiao",
+    "ErShou Rose",
+    "Hu Mage",
+  };
 
-  Print(numbers, LEN);
-  SelectionSort(numbers, LEN);
-  Print(numbers, LEN);
+  Print(musicians, LEN);
+  SelectionSort(musicians, LEN);
+  Print(musicians, LEN);
 
   return 0;
 }
 
-void SelectionSort(int arr[], int len) {
+void SelectionSort(const char * arr[], int len) {
   for (int i = 0; i < len; i++) {
     int min_index = GetMinIndex(arr, i, len);
 
+    // arr: char *[]
+    // char**
+    // const char **
     Swap(arr + i, arr + min_index);
   }
 }
 
-int GetMinIndex(int arr[], int begin, int end) {
-  int min = arr[begin];
+int GetMinIndex(const char *arr[], int begin, int end) {
+  const char *min = arr[begin];
   int min_index = begin;
 
   for (int i = begin + 1; i < end; ++i) {
-    if (arr[i] < min) {
+    if (strcmp(arr[i], min) < 0) {
       min = arr[i];
       min_index = i;
     }
@@ -42,26 +57,16 @@ int GetMinIndex(int arr[], int begin, int end) {
   return min_index;
 }
 
-void Swap(int *left, int *right) {
-  int temp = *left;
+void Swap(const char **left, const char **right) {
+  const char *temp = *left;
   *left = *right;
   *right = temp;
 }
 
-void Print(int arr[], int len) {
+void Print(const char *arr[], int len) {
   for (int i = 0; i < len; i++) {
-    printf("%d ", arr[i]);
+    // arr[i]
+    printf("%s\n", arr[i]);
   }
   printf("\n");
 }
-
-// "Luo Dayou",
-// "Cui Jian",
-// "Dou Wei",
-// "Zhang Chu",
-// "Wan Qing",
-// "Li Zhi",
-// "Yao",
-// "ZuoXiao",
-// "ErShou Rose",
-// "Hu Mage",
