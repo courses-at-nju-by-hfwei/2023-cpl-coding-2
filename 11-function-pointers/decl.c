@@ -11,7 +11,7 @@ int main() {
 
   int (*musician_score_table)[10];
 
-  int *StrCpyStd(char *dest, const char *src);
+  char *StrCpyStd(char *dest, const char *src);
 
   int (*comp)(const void *left, const void *right);
 
